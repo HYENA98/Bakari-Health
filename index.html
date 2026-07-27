@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/web" href="images/LOGO11.jpg" />
+    <title>BAKARI HEALTH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <!-- ========== HEADER / NAVBAR ========== -->
+<header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <!-- Logo - Updated with Image -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="./images/LOGO11.jpg" alt="Bakari-Health Logo" class="logo-img" />
+                    <div class="logo-text-wrapper">
+                        <span class="logo-text">Bakari-Health</span>
+                        <span class="logo-tagline">
+                        Optimistic About <span class="highlight-blue">Health</span>. 
+                        Optimistic About <span class="highlight-blue">You</span>.
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="services.html">OUR DRIPS</a>
+                <li><a href="#how-it-works">HOW IT WORKS</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+
+            <!-- Book Now Button -->
+            <a href="booking.html" class="btn btn-primary nav-cta">
+                <i class="fas fa-calendar-check"></i> Book Now
+            </a>
+
+            <!-- Mobile Hamburger Menu -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+ <!-- ========== HERO SECTION ========== -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <div class="hero-text">
+            <!-- Badge -->
+            <div class="hero-badge">
+                <i class="fas fa-star"></i> Bakari-Health • Premium Wellness
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="hero-title">
+                Optimistic About <br />
+                <span class="highlight-gold">Your Health</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="hero-subtitle">
+                Luxury IV therapy, wellness treatments, and holistic care —
+                delivered to your home, office, or hotel across South Africa.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="hero-buttons">
+                <a href="booking.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-calendar-plus"></i> Book Your Session
+                </a>
+                <a href="services.html" class="btn btn-outline btn-large">
+                    <i class="fas fa-chevron-right"></i> Explore Services
+                </a>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="hero-trust">
+                <div class="trust-item">
+                    <i class="fas fa-user-md"></i>
+                    <span>Licensed Nurses</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Safe & Sterile</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-home"></i>
+                    <span>Mobile Service</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ========== SERVICES PREVIEW SECTION ========== -->
+    <section class="services-preview" id="services">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <span class="section-tag">Our Treatments</span>
+                <h2 class="section-title">Luxury IV Infusion <span>Experience</span></h2>
+                <p class="section-desc">
+                    Curated wellness solutions designed to restore, energize, and rejuvenate.
+                </p>    
+            </div>
+
+            <!-- Service Cards Grid -->
+            <div class="services-grid">
+                <!-- Card 1: Immunity Boost -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3 class="service-name">Immunity Boost</h3>
+                    <p class="service-desc">
+                        High-dose Vitamin C and Zinc to strengthen your immune system.
+                    </p>
+                    <div class="service-footer">
+                        <a href="booking.html" class="btn btn-sm btn-primary">Book</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Energy & Performance -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="service-name">Energy & Performance</h3>
+                    <p class="service-desc">
+                        B-Complex, amino acids, and hydration for peak performance.
+                    </p>
+                    <div class="service-footer">
+                        <a href="booking.html" class="btn btn-sm btn-primary">Book</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Beauty & Glow -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3 class="service-name">Beauty & Glow</h3>
+                    <p class="service-desc">
+                        Glutathione and biotin for radiant skin, hair, and nails.
+                    </p>
+                    <div class="service-footer">
+                        <a href="booking.html" class="btn btn-sm btn-primary">Book</a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Hangover Rescue -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <h3 class="service-name">Hangover Rescue</h3>
+                    <p class="service-desc">
+                        Rapid hydration, anti-nausea, and detox to get you back on track.
+                    </p>
+                    <div class="service-footer">
+                        <a href="booking.html" class="btn btn-sm btn-primary">Book</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Services Button -->
+            <div class="services-cta">
+                <a href="services.html" class="btn btn-outline">
+                    View All Treatments <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS SECTION ========== -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Simple Process</span>
+                <h2 class="section-title">How It <span>Works</span></h2>
+                <p class="section-desc">
+                    Four easy steps to feeling your best – from booking to wellness.
+                </p>
+            </div>
+
+            <div class="steps-grid">
+                <!-- Step 1 -->
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+                    <h3 class="step-title">Choose Your Therapy</h3>
+                    <p class="step-desc">
+                        Browse our menu of IV drips and wellness treatments.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="step-title">Book Your Session</h3>
+                    <p class="step-desc">
+                        Schedule a time that works for you – we come to you.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="step-title">Video Consultation</h3>
+                    <p class="step-desc">
+                        48hrs prior, we'll assess your health history and goals.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="step-title">Wellness Delivered</h3>
+                    <p class="step-desc">
+                        A licensed nurse arrives to administer your treatment.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS SECTION ========== -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Our Clients <span>Say</span></h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Life-changing! The Immunity Boost drip got me through flu season. I'll never go back to regular vitamins."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <span class="author-name">Sarah M.</span>
+                            <span class="author-location">Cape Town</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The nurse arrived on time, was super professional, and I felt amazing the next day. Highly recommend."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JT</div>
+                        <div class="author-info">
+                            <span class="author-name">Jason T.</span>
+                            <span class="author-location">Johannesburg</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "As a busy executive, having wellness come to my office is a game-changer. Royal Renewal is now part of my routine."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">NP</div>
+                        <div class="author-info">
+                            <span class="author-name">Naledi P.</span>
+                            <span class="author-location">Pretoria</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA BANNER ========== -->
+<section class="cta-banner">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">
+                Optimistic About <span>Your Wellness</span>
+            </h2>
+            <p class="cta-desc">
+                Book your first session today and experience the luxury of mobile wellness with Bakari-Health.
+            </p>
+            <a href="booking.html" class="btn btn-primary btn-large">
+                <i class="fas fa-calendar-plus"></i> Book Now
+            </a>
+            <p class="cta-footnote">
+                <i class="fas fa-lock"></i> Secure payments via Payfast &amp; Ozow
+            </p>
+        </div>
+    </div>
+</section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <img src="./images/Logo.png" alt="Bakari-Health Logo" class="footer-logo-img" />
+                    <div class="footer-brand-text">
+                        <span class="logo-text">Bakari-Health</span>
+                        <span class="logo-tagline">
+                            Optimistic About <span class="highlight-blue">Health</span>. 
+                            Optimistic About <span class="highlight-blue">You</span>.
+                        </span>
+                    </div>
+                    <p class="footer-desc">
+                        Premium IV therapy and wellness services delivered to your doorstep across South Africa.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+27824475166">0824475166</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:bakari.health@icloud.com">bakari.health@icloud.com</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27824475166">WhatsApp Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Opening Hours -->
+                <div class="footer-hours">
+                    <h4>Service Hours</h4>
+                    <ul>
+                        <li><span>Mon – Fri:</span> 8:00 AM – 8:00 PM</li>
+                        <li><span>Saturday:</span> 8:00 AM – 8:00 PM</li>
+                        <li><span>Sunday:</span> 8:00 AM – 8:00 PM</li>
+                        <li><span>Public Holidays:</span> By Appointment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 BAKARI HEALTH. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

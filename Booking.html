@@ -1,0 +1,300 @@
+<!-- ================
+     BOOKING FORM 
+     ==============-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Your IV Drip – Bakari-Health SA</title>
+    <link rel="icon" type="image/web" href="images/LOGO11.jpg" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/LOGO11.jpg" alt="Bakari-Health Logo" class="logo-img" />
+                        <div class="logo-text-wrapper">
+                            <span class="logo-text">Bakari-Health</span>
+                            <span class="logo-tagline">
+                                Optimistic About <span class="highlight-blue">Health</span>. 
+                                Optimistic About <span class="highlight-blue">You</span>.
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">IV Drips</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+                <a href="booking.html" class="btn btn-primary nav-cta">
+                    <i class="fas fa-calendar-check"></i> Book Now
+                </a>
+
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== PAGE HERO ========== -->
+    <section class="booking-hero">
+        <div class="container">
+            <h1>Book Your <span>IV Drip</span></h1>
+            <p>Fill in your details and we'll confirm your appointment</p>
+        </div>
+    </section>
+
+    <!-- ========== BOOKING FORM ========== -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-wrapper" id="bookingFormWrapper">
+
+                <!-- Form Content -->
+                <div id="bookingFormContent">
+                    <h2>Let's Get You Booked</h2>
+                    <p class="subtitle">Complete the form below and we'll confirm your appointment within 24 hours.</p>
+
+                    <!-- Selected Service Display -->
+                    <div class="selected-service">
+                        <div>
+                            <div class="service-label">Selected Drip</div>
+                            <div class="service-name-display" id="selectedServiceName">None Selected</div>
+                        </div>
+                        <div class="service-price-display" id="selectedServicePrice">R0</div>
+                    </div>
+
+                    <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+
+                        <!-- Row 1: Full Name & Email -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="fullName" placeholder="e.g. Thandi Mthembu" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" placeholder="e.g. thandi@example.com" required />
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Phone & Service -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number <span class="required">*</span></label>
+                                <input type="tel" id="phone" placeholder="e.g. 082 123 4567" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="serviceSelect">Select IV Drip <span class="required">*</span></label>
+                                <select id="serviceSelect" required onchange="updateServiceDisplay()">
+                                    <option value="">-- Select a Drip --</option>
+                                    <option value="signature">SIGNATURE DRIP – R1,650</option>
+                                    <option value="hangover-recovery">HANGOVER RECOVERY – R1,050</option>
+                                    <option value="weekend-recovery">WEEKEND RECOVERY – R1,350</option>
+                                    <option value="rehydration">REHYDRATION – R700</option>
+                                    <option value="brain-boost">BRAIN BOOST – R1,150</option>
+                                    <option value="athletic-recovery">ATHLETIC RECOVERY – R1,200</option>
+                                    <option value="energy-booster">ENERGY BOOSTER – R1,050</option>
+                                    <option value="beauty-glow">BEAUTY GLOW – R1,450</option>
+                                    <option value="skin-glow">SKIN GLOW – R1,250</option>
+                                    <option value="immune-booster">IMMUNE BOOSTER – R1,050</option>
+                                    <option value="ultimate-immunity">ULTIMATE IMMUNITY – R1,050</option>
+                                    <option value="flu-gone">FLU GONE – R950</option>
+                                    <option value="rejuvenating">REJUVENATING – R1,050</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: Date & Time -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookingDate">Preferred Date <span class="required">*</span></label>
+                                <input type="date" id="bookingDate" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingTime">Preferred Time <span class="required">*</span></label>
+                                <select id="bookingTime" required>
+                                    <option value="">-- Select Time --</option>
+                                    <option value="08:00">8:00 AM</option>
+                                    <option value="09:00">9:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">1:00 PM</option>
+                                    <option value="14:00">2:00 PM</option>
+                                    <option value="15:00">3:00 PM</option>
+                                    <option value="16:00">4:00 PM</option>
+                                    <option value="17:00">5:00 PM</option>
+                                    <option value="18:00">6:00 PM</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="form-group">
+                            <label for="address">Service Address <span class="required">*</span></label>
+                            <input type="text" id="address" placeholder="e.g. 123 Main Street, Sandton, Johannesburg" required />
+                        </div>
+
+                        <!-- Special Requests -->
+                        <div class="form-group">
+                            <label for="specialRequests">Special Requests (Optional)</label>
+                            <textarea id="specialRequests" placeholder="Any allergies, health conditions, or special instructions..."></textarea>
+                        </div>
+
+                        <!-- ===== DEPOSIT INFO (No Payment) ===== -->
+                        <div class="deposit-section">
+                            <h4>💎 Booking Information</h4>
+                            <div class="deposit-amount" id="depositAmount">R0</div>
+                            <div class="deposit-note">
+                                A <strong>50% non-refundable deposit</strong> is required to secure your appointment.
+                                The remaining 50% balance is payable after the service.
+                                <br /><br />
+                                <em>📧 You'll receive a confirmation email with payment details.</em>
+                            </div>
+                        </div>
+
+                        <!-- Terms -->
+                        <div style="margin-bottom: 20px; font-size:0.85rem; color:#888;">
+                            <input type="checkbox" id="termsCheckbox" required style="margin-right:8px;" />
+                            <label for="termsCheckbox" style="display:inline;">
+                                I agree to the <a href="#" style="color:#b8860b;">Terms of Service</a> and 
+                                <a href="#" style="color:#b8860b;">Privacy Policy</a>. I understand the deposit is non-refundable.
+                            </label>
+                        </div>
+
+                        <!-- Submit Button (UPDATED) -->
+                        <button type="submit" class="btn-submit" id="submitBtn">
+                            <i class="fas fa-calendar-check"></i> Book Now
+                        </button>
+
+                    </form>
+                </div>
+
+                <!-- ===== SUCCESS MESSAGE (UPDATED) ===== -->
+                <div class="booking-success" id="bookingSuccess">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Booking Confirmed! 🎉</h3>
+                    <p>
+                        Your IV drip session has been booked. We've sent a confirmation email with all the details.
+                        A nurse will contact you within 24 hours.
+                    </p>
+
+                    <div class="payment-info">
+                        <p><strong>💳 Payment Instructions</strong></p>
+                        <p>A 50% deposit (R<span id="successDeposit">0</span>) is required to secure your appointment.</p>
+                        <p style="font-size: 0.85rem; color: #888;">
+                            Please make payment to:<br />
+                            <strong>Bank:</strong> Capitec Bank<br />
+                            <strong>Account Holder:</strong> Bakari-Health SA<br />
+                            <strong>Account Number:</strong> 1234567890<br />
+                            <strong>Reference:</strong> <span id="successReference">-</span>
+                        </p>
+                        <p style="font-size: 0.85rem; color: #888;">
+                            📧 We've sent the payment details to your email.
+                        </p>
+                    </div>
+
+                    <a href="index.html" class="btn-back-home">
+                        <i class="fas fa-home"></i> Return Home
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="images/LOGO11.jpg" alt="Bakari-Health Logo" class="footer-logo-img" />
+                    <div class="footer-brand-text">
+                        <span class="logo-text">Bakari-Health</span>
+                        <span class="logo-tagline">
+                            Optimistic About <span class="highlight-blue">Health</span>. 
+                            Optimistic About <span class="highlight-blue">You</span>.
+                        </span>
+                    </div>
+                    <p class="footer-desc">
+                        Premium IV therapy and wellness services delivered to your doorstep across South Africa.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/277824475166" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">IV Drips</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="booking.html">Book Now</a></li>
+                        <li><a href="index.html#how-it-works">How It Works</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+27716595529">071 659 5529</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:bakari.health@icloud.com">bakari.health@icloud.com</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27716595529">WhatsApp Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-hours">
+                    <h4>Service Hours</h4>
+                    <ul>
+                        <li><span>Mon – Fri:</span> 8:00 AM – 8:00 PM</li>
+                        <li><span>Saturday:</span> 8:00 AM – 8:00 PM</li>
+                        <li><span>Sunday:</span> 8:00 AM – 8:00 PM</li>
+                        <li><span>Public Holidays:</span> By Appointment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bakari-Health SA. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
