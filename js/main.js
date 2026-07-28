@@ -1,5 +1,5 @@
 // ========================================
-// ROYAL RENEWAL WELLNESS SA - MAIN JS
+// BAKARI HEALTH - MAIN JS
 // ========================================
 
 // ---------- HAMBURGER MENU ----------//
@@ -9,13 +9,13 @@ const navLinks = document.querySelector('.nav-links');
 if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
-        navLinks.classList.toggle('open');
+        navLinks.classList.toggle('active'); // ← FIXED: changed from 'open' to 'active'
     });
 
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
-            navLinks.classList.remove('open');
+            navLinks.classList.remove('active'); // ← FIXED: changed from 'open' to 'active'
         });
     });
 }
@@ -58,17 +58,17 @@ const urlParams = new URLSearchParams(window.location.search);
 const serviceParam = urlParams.get('service');
 
 const serviceMap = {
-    'immunity': 'emerald-elixir',
-    'energy': 'regal-drip',
-    'beauty': 'queendom-quench',
-    'hangover': 'sunset-recovery',
-    'stress': 'sky-serenity',
-    'sports': 'regal-drip',
-    'liquid-gold': 'liquid-gold',
-    'queendom-quench': 'queendom-quench',
-    'regal-drip': 'regal-drip',
-    'emerald-elixir': 'emerald-elixir',
-    'sky-serenity': 'sky-serenity',
+    'immunity': 'immune-booster',
+    'energy': 'energy-booster',
+    'beauty': 'beauty-glow',
+    'hangover': 'hangover-recovery',
+    'stress': 'brain-boost',
+    'sports': 'athletic-recovery',
+    'signature': 'signature',
+    'flu': 'flu-gone',
+    'skin': 'skin-glow',
+    'hydration': 'rehydration',
+    'custom': 'rejuvenating',
     'sunset-recovery': 'sunset-recovery'
 };
 
@@ -234,7 +234,6 @@ async function handleBookingSubmit(event) {
     }
 }
 
-
 // Set min date to today
 document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('bookingDate');
@@ -243,6 +242,30 @@ document.addEventListener('DOMContentLoaded', function() {
         dateInput.setAttribute('min', today);
     }
 });
+
+
+// ========================================
+// CONTACT FORM SUBMISSION
+// ========================================
+
+async function handleContactSubmit(event) {
+    event.preventDefault();
+
+    const submitBtn = document.getElementById('contactSubmitBtn');
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('contactSuccess');
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    // Simulate sending (replace with actual API call later)
+    setTimeout(() => {
+        form.style.display = 'none';
+        success.classList.add('show');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    }, 2000);
+}
 
 console.log('✦ BAKARI HEALTH SA ✦');
 console.log('Luxury mobile wellness services across South Africa.');

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us – Bakari-Health SA</title>
+    <link rel="icon" type="image/web" href="images/LOGO11.jpg" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+    <!-- ========== HEADER / NAVBAR ========== -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/LOGO11.jpg" alt="Bakari-Health Logo" class="logo-img" />
+                        <div class="logo-text-wrapper">
+                            <span class="logo-text">BAKARI</span>
+                            <span class="logo-subtext">HEALTH</span>
+                            <span class="logo-tagline">
+                                Optimistic About <span class="highlight-blue">Health</span>.<br>
+                                Optimistic About <span class="highlight-blue">You</span>.
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <ul class="nav-links">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="services.html">OUR DRIPS</a></li>
+                    <li><a href="how-it-works.html">HOW IT WORKS</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html" class="active">CONTACT</a></li>
+                </ul>
+
+                <!-- Book Now Button -->
+                <a href="Booking.html" class="btn btn-primary nav-cta">
+                    Book Now <i class="fas fa-arrow-right"></i>
+                </a>
+
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Get in <span>Touch</span></h1>
+            <p>We'd love to hear from you. Reach out with any questions or to book your session.</p>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Left Column: Contact Info -->
+                <div class="contact-info-column">
+                    <h2>Let's <span>Connect</span></h2>
+                    <p>
+                        Have questions about our IV drips or want to book a session? 
+                        Get in touch with us — we're here to help.
+                    </p>
+
+                    <div class="contact-details">
+                        <div class="contact-detail-item">
+                            <div class="detail-icon"><i class="fas fa-phone"></i></div>
+                            <div class="detail-text">
+                                <h4>Phone</h4>
+                                <a href="tel:+27716595529">071 659 5529</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="detail-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="detail-text">
+                                <h4>Email</h4>
+                                <a href="mailto:bakari.health@icloud.com">bakari.health@icloud.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="detail-icon"><i class="fab fa-whatsapp"></i></div>
+                            <div class="detail-text">
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/27824475166">082 447 5166</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="detail-icon"><i class="fas fa-clock"></i></div>
+                            <div class="detail-text">
+                                <h4>Service Hours</h4>
+                                <p>Mon – Fri: 8:00 AM – 20:00 PM<br />Sat – Sun: 8:00 AM – 20:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="detail-text">
+                                <h4>Service Area</h4>
+                                <p>Rustenburg and surrounding areas</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                            <a href="https://wa.me/27824475166" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Contact Form -->
+                <div class="contact-form-column">
+                    <h3>Send Us a <span style="color:#b8860b;">Message</span></h3>
+                    <p class="form-subtitle">We'll get back to you within 24 hours.</p>
+
+                    <form id="contactForm" class="contact-form" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="contactName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="contactName" placeholder="Enter your full name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address <span class="required">*</span></label>
+                            <input type="email" id="contactEmail" placeholder="Enter your email address" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">Phone Number</label>
+                            <input type="tel" id="contactPhone" placeholder="Enter your phone number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject <span class="required">*</span></label>
+                            <input type="text" id="contactSubject" placeholder="What is this regarding?" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message <span class="required">*</span></label>
+                            <textarea id="contactMessage" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit" id="contactSubmitBtn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div class="form-success" id="contactSuccess">
+                        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                        <h4>Message Sent! 🎉</h4>
+                        <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MAP SECTION ========== -->
+    <section class="map-section">
+        <div class="container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115787.94634579546!2d27.1877163!3d-25.6647892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ebfbbfa8d1564cd%3A0x9602d529084c1ef!2sRustenburg%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1710000000000!5m2!1sen!2sza" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="contact-cta">
+        <div class="container">
+            <h2>Ready to Feel <span>Your Best?</span></h2>
+            <p>Book your IV drip session today and experience the Bakari-Health difference.</p>
+            <a href="Booking.html" class="btn btn-primary btn-large">
+                <i class="fas fa-calendar-plus"></i> Book Your Session
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-text">
+                        <span class="logo-text">Bakari-Health</span>
+                        <span class="logo-tagline">
+                            Optimistic About <span class="highlight-blue">Health</span>. 
+                            Optimistic About <span class="highlight-blue">You</span>.
+                        </span>
+                    </div>
+                    <p class="footer-desc">
+                        Premium IV therapy and wellness services delivered to your doorstep across South Africa.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://wa.me/27824475166" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">IV Drips</a></li>
+                        <li><a href="Booking.html">Book Now</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+27716595529">071 659 5529</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:bakari.health@icloud.com">bakari.health@icloud.com</a></li>
+                        <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/27824475166">WhatsApp Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-hours">
+                    <h4>Service Hours</h4>
+                    <ul>
+                        <li><span>Mon – Fri:</span> 9:00 AM – 20:00 PM</li>
+                        <li><span>Saturday:</span> 8:00 AM – 20:00 PM</li>
+                        <li><span>Sunday:</span> 8:00 AM – 20:00 PM</li>
+                        <li><span>Public Holidays:</span> By Appointment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Bakari-Health SA. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</html>

@@ -19,7 +19,7 @@ async function sendBookingConfirmation(booking) {
     const { customer, service, appointment, reference } = booking;
 
     const mailOptions = {
-        from: process.env.EMAIL_FROM || 'noreply@bakari-health.co.za',
+        from: process.env.EMAIL_FROM || 'bakari.health@icloud.com',
         to: customer.email,
         subject: `✅ Booking Confirmed – Bakari-Health`,
         html: `
@@ -94,9 +94,9 @@ async function sendBookingConfirmation(booking) {
                             <p><strong>💳 Payment Instructions</strong></p>
                             <p>To secure your booking, please pay the deposit to:</p>
                             <p>
-                                <strong>Bank:</strong> Capitec Bank<br />
-                                <strong>Account Holder:</strong> Bakari-Health SA<br />
-                                <strong>Account Number:</strong> 1234567890<br />
+                                <strong>Bank:</strong> FNB BUSINESS ACOUNT<br />
+                                <strong>Account Holder:</strong> Bakari-Health pty ltd<br />
+                                <strong>Account Number:</strong> 63208192540<br />
                                 <strong>Reference:</strong> <span style="font-weight: bold; color: #b8860b;">${reference || booking._id}</span>
                             </p>
                             <p style="font-size: 0.85rem; color: #888;">
@@ -116,7 +116,7 @@ async function sendBookingConfirmation(booking) {
                         </div>
 
                         <p style="font-size: 14px; color: #666;">
-                            If you have any questions, simply reply to this email or call us at <strong>082 123 4567</strong>.
+                            If you have any questions, simply reply to this email or call us at <strong>071 659 5529</strong>.
                         </p>
                     </div>
 
