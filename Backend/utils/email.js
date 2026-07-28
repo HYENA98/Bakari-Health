@@ -1,5 +1,9 @@
 // utils/email.js
 const nodemailer = require('nodemailer');
+const dns = require('dns');
+
+// Force IPv4
+dns.setDefaultResultOrder('ipv4first');
 
 // Create transporter
 const transporter = nodemailer.createTransport({
@@ -10,8 +14,10 @@ const transporter = nodemailer.createTransport({
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
     },
+    connectionTimeout: 10000,
+    socketTimeout: 10000,
+    family: 4,
 });
-
 /**
  * Send booking confirmation email to customer
  */
