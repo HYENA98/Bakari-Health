@@ -7,15 +7,15 @@ dns.setDefaultResultOrder('ipv4first');
 
 // Create transporter
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    host: process.env.SMTP_HOST || 'smtp.mail.me.com',
     port: parseInt(process.env.SMTP_PORT) || 587,
     secure: false,
     auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
     },
-    connectionTimeout: 10000,
-    socketTimeout: 10000,
+    connectionTimeout: 30000,
+    socketTimeout: 30000,
     family: 4,
 });
 /**
