@@ -131,7 +131,7 @@ ul {
 }
 
 /* ========================================
-   LOGO STYLES - WITH DIVIDER LINE
+   LOGO STYLES - WITH DIVIDER LINE (UPDATED)
    ======================================== */
 
 .logo a {
@@ -141,13 +141,13 @@ ul {
 }
 
 .logo-img {
-    height: 70px;
+    height: 90px;  /* INCREASED from 70px */
     width: auto;
 }
 
 .logo-divider {
     width: 2px;
-    height: 55px;
+    height: 65px;  /* INCREASED from 55px */
     background: linear-gradient(to bottom, transparent, #b8860b, transparent);
     opacity: 0.6;
     flex-shrink: 0;
@@ -161,7 +161,7 @@ ul {
 
 .logo-text {
     font-family: var(--font-serif);
-    font-size: 28px;
+    font-size: 22px;  /* DECREASED from 28px */
     font-weight: 700;
     letter-spacing: 1px;
     color: var(--primary-navy);
@@ -235,7 +235,7 @@ ul {
 }
 
 /* ==========================================
-   HEADER / NAVBAR - FIXED FOR TABLETS
+   HEADER / NAVBAR - FIXED FOR TABLETS (UPDATED)
    ========================================== */
 
 /* Large Tablets / Nest Hub (around 1024px - 1100px) */
@@ -252,15 +252,15 @@ ul {
     }
 
     .logo-img {
-        height: 50px;
+        height: 60px;  /* INCREASED from 50px */
     }
 
     .logo-divider {
-        height: 35px;
+        height: 45px;  /* INCREASED from 35px */
     }
 
     .logo-text {
-        font-size: 20px;
+        font-size: 18px;  /* DECREASED from 20px */
     }
 
     .logo-tagline {
@@ -291,15 +291,15 @@ ul {
     }
 
     .logo-img {
-        height: 45px;
+        height: 55px;  /* INCREASED from 45px */
     }
 
     .logo-divider {
-        height: 32px;
+        height: 40px;  /* INCREASED from 32px */
     }
 
     .logo-text {
-        font-size: 18px;
+        font-size: 16px;  /* DECREASED from 18px */
     }
 
     .logo-tagline {
@@ -353,15 +353,15 @@ ul {
 /* Small Tablets (600px - 768px) */
 @media (max-width: 768px) {
     .logo-img {
-        height: 40px;
+        height: 50px;  /* INCREASED from 40px */
     }
 
     .logo-divider {
-        height: 28px;
+        height: 35px;  /* INCREASED from 28px */
     }
 
     .logo-text {
-        font-size: 16px;
+        font-size: 14px;  /* DECREASED from 16px */
     }
 
     .logo-tagline {
@@ -377,15 +377,15 @@ ul {
 /* Mobile (480px and below) */
 @media (max-width: 480px) {
     .logo-img {
-        height: 35px;
+        height: 42px;  /* INCREASED from 35px */
     }
 
     .logo-divider {
-        height: 24px;
+        height: 28px;  /* INCREASED from 24px */
     }
 
     .logo-text {
-        font-size: 14px;
+        font-size: 13px;  /* DECREASED from 14px */
     }
 
     .logo-tagline {
@@ -1764,7 +1764,7 @@ ul {
 }
 
 /* ========================================
-   OUR TEAM - LEAD PRACTITIONER LAYOUT (UPDATED & RESPONSIVE)
+   OUR TEAM - LEAD PRACTITIONER LAYOUT (UPDATED)
    ======================================== */
 .lead-practitioner-wrapper {
     display: flex;
@@ -1774,16 +1774,16 @@ ul {
 
 .lead-practitioner-card {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.04);
     padding: 40px;
-    max-width: 900px;
+    max-width: 500px;
     width: 100%;
-    gap: 40px;
+    gap: 24px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1794,9 +1794,9 @@ ul {
 
 .lead-image-box {
     flex-shrink: 0;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    border-radius: 12px;  /* Soft corners */
     overflow: hidden;
     border: 4px solid #0b2545;
     position: relative;
@@ -1804,6 +1804,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 8px 30px rgba(11, 37, 69, 0.15);
 }
 
 .lead-image-box img {
@@ -1819,19 +1820,21 @@ ul {
 }
 .lead-image-box .lead-avatar-fallback {
     display: none;
-    font-size: 4.5rem;
+    font-size: 5rem;
     color: #0b2545;
 }
 
 .lead-info-box {
     flex: 1;
+    text-align: center;
+    width: 100%;
 }
 
 .lead-info-box h4 {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     color: #1a1a2e;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .lead-role {
@@ -2899,11 +2902,11 @@ ul {
     }
 
     .logo-divider {
-        height: 38px;
+        height: 35px;
     }
 
     .logo-text {
-        font-size: 20px;
+        font-size: 14px;
     }
 
     .logo-tagline {
@@ -3104,16 +3107,15 @@ ul {
        LEAD PRACTITIONER - RESPONSIVE TWEAKS
        ======================================== */
     .lead-practitioner-card {
-        flex-direction: column;
-        text-align: center;
         padding: 30px 20px;
-        gap: 24px;
+        gap: 20px;
         margin: 0 10px;
+        max-width: 100%;
     }
     
     .lead-image-box {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }
     
     .lead-image-box .lead-avatar-fallback {
@@ -3126,10 +3128,6 @@ ul {
     
     .lead-info-box p {
         font-size: 0.95rem;
-    }
-    
-    .cta-about h2 {
-        font-size: 2.2rem;
     }
 
     /* Contact Page Mobile */
@@ -3468,7 +3466,7 @@ ul {
 
     /* Logo small mobile */
     .logo-img {
-        height: 40px;
+        height: 42px;
     }
 
     .logo-divider {
@@ -3476,7 +3474,7 @@ ul {
     }
 
     .logo-text {
-        font-size: 16px;
+        font-size: 13px;
     }
 
     .logo-tagline {
@@ -3485,8 +3483,8 @@ ul {
 
     /* Lead Practitioner Small Mobile */
     .lead-image-box {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
         border-width: 3px;
     }
     
@@ -3621,7 +3619,7 @@ ul {
 
     /* Logo 360px */
     .logo-img {
-        height: 35px;
+        height: 38px;
     }
 
     .logo-divider {
@@ -3629,7 +3627,7 @@ ul {
     }
 
     .logo-text {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .logo-tagline {
@@ -3642,6 +3640,16 @@ ul {
         min-width: 140px;
         font-size: 0.8rem;
         padding: 8px 16px;
+    }
+
+    /* Lead Practitioner 360px */
+    .lead-image-box {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .lead-image-box .lead-avatar-fallback {
+        font-size: 2.5rem;
     }
 }
 

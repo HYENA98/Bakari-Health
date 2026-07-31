@@ -12,7 +12,8 @@
     "mongoose": "^9.8.0",
     "mongosh": "^2.9.2",
     "mssql": "^12.7.0",
-    "nodemailer": "^9.0.3"
+    "nodemailer": "^9.0.3",
+    "resend": "^6.18.1"
   },
   "name": "backend",
   "version": "1.0.0",
