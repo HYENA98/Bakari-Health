@@ -19,7 +19,10 @@ app.use(cors({
     origin: ['http://localhost:3001',
              'http://127.0.0.1:3001',
              'https://bakari-health-frontend.onrender.com',
-             'https://bakari-health.onrender.com'],
+             'https://bakari-health.onrender.com',
+             'https://www.bakari-health.co.za',
+             'https://bakari-health.co.za'
+            ],
     credentials: true,
 }));
 app.use(express.json());
