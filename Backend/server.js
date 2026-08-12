@@ -140,17 +140,13 @@ app.get('/health', (req, res) => {
 });
 
 // ========================================
-// BOOKING ROUTES (with rate limiting)
+// BOOKING ROUTES
 // ========================================
 
 // Create a booking
 app.post('/api/bookings', bookingLimiter, async (req, res) => {
     try {
         console.log('📨 Received booking data:', req.body);
-
-        // ========================================
-        // VALIDATE INPUT
-        // ========================================
 
         const validation = validateBookingInput(req.body);
         if (!validation.valid) {
@@ -163,7 +159,6 @@ app.post('/api/bookings', bookingLimiter, async (req, res) => {
 
         const bookingData = validation.data;
 
-        // Generate short reference
         bookingData.reference = generateShortReference();
 
         const booking = new Booking(bookingData);
@@ -171,10 +166,7 @@ app.post('/api/bookings', bookingLimiter, async (req, res) => {
 
         console.log(`✅ Booking saved: ${booking.reference} (${booking._id})`);
 
-        // Send confirmation to customer
         await sendBookingConfirmation(booking);
-
-        // Send notification to admin
         await sendAdminNotification(booking);
 
         res.status(201).json({
@@ -185,9 +177,7 @@ app.post('/api/bookings', bookingLimiter, async (req, res) => {
     } catch (error) {
         console.error('❌ Error creating booking:', error);
 
-        // Check for duplicate reference (rare but possible)
         if (error.code === 11000 && error.keyPattern && error.keyPattern.reference) {
-            // Retry with new reference
             try {
                 const bookingData = req.body;
                 bookingData.reference = generateShortReference();
@@ -195,7 +185,6 @@ app.post('/api/bookings', bookingLimiter, async (req, res) => {
                 await booking.save();
                 console.log(`✅ Booking saved (retry): ${booking.reference}`);
 
-                // Send emails
                 await sendBookingConfirmation(booking);
                 await sendAdminNotification(booking);
 
@@ -214,7 +203,6 @@ app.post('/api/bookings', bookingLimiter, async (req, res) => {
             }
         }
 
-        // Send appropriate error response (don't expose internal errors)
         res.status(400).json({
             success: false,
             message: error.message || 'Error creating booking',
@@ -332,6 +320,44 @@ app.put('/api/bookings/:id/status', async (req, res) => {
     }
 });
 
+// ========================================
+// PAYMENT ROUTES
+// ========================================
+
+// Mark payment as paid
+app.put('/api/bookings/:id/payment', async (req, res) => {
+    try {
+        const { paymentStatus, depositPaid, paidAt } = req.body;
+        
+        const booking = await Booking.findById(req.params.id);
+        if (!booking) {
+            return res.status(404).json({
+                success: false,
+                message: 'Booking not found'
+            });
+        }
+
+        booking.payment.status = paymentStatus || 'paid';
+        booking.payment.depositPaid = depositPaid !== undefined ? depositPaid : true;
+        booking.payment.paidAt = paidAt || new Date();
+        booking.payment.amountPaid = booking.service.depositAmount;
+
+        await booking.save();
+
+        res.json({
+            success: true,
+            message: 'Payment status updated',
+            data: booking
+        });
+    } catch (error) {
+        console.error('❌ Error updating payment:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error updating payment',
+        });
+    }
+});
+
 // Delete a booking
 app.delete('/api/bookings/:id', async (req, res) => {
     try {
@@ -364,7 +390,6 @@ app.delete('/api/bookings/:id', async (req, res) => {
 app.use((err, req, res, next) => {
     console.error('❌ Unhandled error:', err);
 
-    // Don't expose stack traces in production
     const isProduction = process.env.NODE_ENV === 'production';
     res.status(500).json({
         success: false,
@@ -385,4 +410,5 @@ app.listen(PORT, () => {
     console.log(`📡 Bookings API: http://localhost:${PORT}/api/bookings`);
     console.log(`🔧 Mode: ${process.env.NODE_ENV || 'development'}`);
     console.log(`🔒 Rate limiting enabled: 100 requests/15min, 10 bookings/min`);
+    console.log(`💳 Payment marking enabled`);
 });

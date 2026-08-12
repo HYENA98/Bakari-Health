@@ -270,6 +270,7 @@
         .payment-status.paid { color: #2ecc71; }
         .payment-status.pending { color: #f39c12; }
         .payment-status.failed { color: #e74c3c; }
+        .payment-status.refunded { color: #95a5a6; }
 
         .action-buttons {
             display: flex;
@@ -330,6 +331,16 @@
         .btn-delete:hover {
             background: #7f8c8d;
             box-shadow: 0 4px 12px rgba(149, 165, 166, 0.3);
+        }
+
+        .btn-paid {
+            background: #b8860b;
+            color: #fff;
+        }
+
+        .btn-paid:hover {
+            background: #a0750a;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
         }
 
         /* Loading State */
@@ -439,86 +450,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            body {
-                padding: 12px;
-            }
-
-            .dashboard-header h1 {
-                font-size: 1.4rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .stat-card {
-                padding: 16px;
-            }
-
-            .stat-card .stat-number {
-                font-size: 1.6rem;
-            }
-
-            table {
-                font-size: 0.8rem;
-            }
-
-            th, td {
-                padding: 10px 12px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                gap: 4px;
-            }
-
-            .btn-action {
-                width: 100%;
-                text-align: center;
-                padding: 6px;
-            }
-
-            .modal {
-                padding: 20px;
-            }
-
-            .modal .detail-row {
-                flex-direction: column;
-                padding: 8px 0;
-            }
-
-            .modal .detail-label {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-
-            .stat-card {
-                padding: 12px;
-            }
-
-            .stat-card .stat-number {
-                font-size: 1.2rem;
-            }
-
-            .filters {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        /* ========================================
-           PASSWORD PROTECTION STYLES
-           ======================================== */
-
+        /* Password Protection */
         #passwordModal {
             position: fixed;
             top: 0;
@@ -618,6 +550,82 @@
 
         .password-box .error-message.show {
             display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 1.4rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1.6rem;
+            }
+
+            table {
+                font-size: 0.8rem;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .btn-action {
+                width: 100%;
+                text-align: center;
+                padding: 6px;
+            }
+
+            .modal {
+                padding: 20px;
+            }
+
+            .modal .detail-row {
+                flex-direction: column;
+                padding: 8px 0;
+            }
+
+            .modal .detail-label {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .stat-card {
+                padding: 12px;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1.2rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
 </head>
@@ -772,11 +780,8 @@
             const password = input.value;
 
             if (password === ADMIN_PASSWORD) {
-                // Hide password modal
                 document.getElementById('passwordModal').classList.add('hidden');
-                // Show dashboard
                 document.getElementById('dashboardContent').style.display = 'block';
-                // Load bookings
                 loadBookings();
             } else {
                 error.classList.add('show');
@@ -789,7 +794,6 @@
             }
         }
 
-        // Allow Enter key to submit
         document.getElementById('adminPasswordInput').addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 verifyPassword();
@@ -916,7 +920,12 @@
                 return;
             }
 
-            table.innerHTML = bookings.map(booking => `
+            table.innerHTML = bookings.map(booking => {
+                const paymentStatus = booking.payment.status || 'pending';
+                const depositPaid = booking.payment.depositPaid ? '💰' : '';
+                const paidDate = booking.payment.paidAt ? `<br><small style="color:#888;font-size:0.7rem;">${new Date(booking.payment.paidAt).toLocaleDateString()}</small>` : '';
+
+                return `
                 <tr>
                     <td>
                         <span class="booking-reference">${booking.reference || booking._id.slice(-6)}</span>
@@ -935,13 +944,21 @@
                         <span class="status-badge ${booking.appointment.status}">${booking.appointment.status}</span>
                     </td>
                     <td>
-                        <span class="payment-status ${booking.payment.status}">
-                            ${booking.payment.status}
-                            ${booking.payment.depositPaid ? '✅' : ''}
+                        <span class="payment-status ${paymentStatus}">
+                            ${paymentStatus === 'paid' ? '✅ Paid' : 
+                              paymentStatus === 'pending' ? '⏳ Pending' : 
+                              paymentStatus === 'failed' ? '❌ Failed' : 
+                              paymentStatus === 'refunded' ? '↩️ Refunded' : 
+                              paymentStatus}
+                            ${depositPaid}
                         </span>
+                        ${paidDate}
                     </td>
                     <td>
                         <div class="action-buttons">
+                            <button class="btn-action btn-paid" onclick="markAsPaid('${booking._id}')">
+                                <i class="fas fa-check"></i> Mark Paid
+                            </button>
                             <button class="btn-action btn-confirm" onclick="updateStatus('${booking._id}', 'confirmed')">
                                 Confirm
                             </button>
@@ -960,7 +977,38 @@
                         </div>
                     </td>
                 </tr>
-            `).join('');
+            `}).join('');
+        }
+
+        // ========================================
+        // MARK PAYMENT AS PAID
+        // ========================================
+
+        async function markAsPaid(bookingId) {
+            if (!confirm('Mark this booking as PAID? This will record the deposit as received.')) return;
+
+            try {
+                const response = await fetch(`${API_URL}/api/bookings/${bookingId}/payment`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        paymentStatus: 'paid',
+                        depositPaid: true,
+                        paidAt: new Date().toISOString()
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('✅ Payment marked as paid');
+                    loadBookings();
+                } else {
+                    alert('❌ Error: ' + (result.message || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('❌ Network error: ' + error.message);
+            }
         }
 
         // ========================================
@@ -1062,6 +1110,15 @@
                         <span class="detail-value">R${b.service.depositAmount.toFixed(2)}</span>
                     </div>
                     <div class="detail-row">
+                        <span class="detail-label">Payment Status</span>
+                        <span class="detail-value">${b.payment.status}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Deposit Paid</span>
+                        <span class="detail-value">${b.payment.depositPaid ? '✅ Yes' : '❌ No'}</span>
+                    </div>
+                    ${b.payment.paidAt ? `<div class="detail-row"><span class="detail-label">Paid On</span><span class="detail-value">${new Date(b.payment.paidAt).toLocaleString()}</span></div>` : ''}
+                    <div class="detail-row">
                         <span class="detail-label">Date</span>
                         <span class="detail-value">${new Date(b.appointment.date).toLocaleDateString()}</span>
                     </div>
@@ -1072,10 +1129,6 @@
                     <div class="detail-row">
                         <span class="detail-label">Status</span>
                         <span class="detail-value"><span class="status-badge ${b.appointment.status}">${b.appointment.status}</span></span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Payment</span>
-                        <span class="detail-value">${b.payment.status}</span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Special Requests</span>
@@ -1110,10 +1163,10 @@
         });
 
         // ========================================
-        // AUTO-REFRESH (Every 120 seconds)
+        // AUTO-REFRESH (Every 60 seconds)
         // ========================================
 
-        setInterval(loadBookings, 120000);
+        setInterval(loadBookings, 60000);
     </script>
 
 </body>
