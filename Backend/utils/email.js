@@ -12,7 +12,7 @@ async function sendBookingConfirmation(booking) {
 
     try {
         const { data, error } = await resend.emails.send({
-            from: process.env.EMAIL_FROM || 'Bakari-Health <bakari.health@icloud.com>',
+            from: process.env.EMAIL_FROM || 'Bakari-Health <noreply@bakari-health.co.za>',
             to: [customer.email],
             subject: `✅ Booking Confirmed – Bakari-Health`,
             html: `
@@ -23,18 +23,18 @@ async function sendBookingConfirmation(booking) {
                     <style>
                         body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
                         .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e8e8e8; border-radius: 8px; }
-                        .header { text-align: center; border-bottom: 2px solid #b8860b; padding-bottom: 20px; }
+                        .header { text-align: center; border-bottom: 2px solid #0b2149; padding-bottom: 20px; }
                         .logo { font-size: 24px; font-weight: bold; color: #1a1a2e; }
-                        .logo span { color: #b8860b; }
-                        .tagline { color: #b8860b; font-size: 14px; }
+                        .logo span { color: #0b2149; }
+                        .tagline { color: #0b2149; font-size: 14px; }
                         .content { padding: 20px 0; }
                         .details { background: #f8f6f4; padding: 16px; border-radius: 8px; margin: 16px 0; }
                         .detail-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
                         .detail-row:last-child { border-bottom: none; }
                         .label { font-weight: bold; color: #555; }
                         .value { color: #1a1a2e; }
-                        .payment-box { background: #f0f4f8; padding: 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #b8860b; }
-                        .btn { display: inline-block; background: #b8860b; color: #fff; padding: 10px 24px; border-radius: 4px; text-decoration: none; }
+                        .payment-box { background: #f0f4f8; padding: 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid #0b2149; }
+                        .btn { display: inline-block; background: #0b2149; color: #fff; padding: 10px 24px; border-radius: 4px; text-decoration: none; }
                         .footer { text-align: center; padding-top: 20px; border-top: 1px solid #e8e8e8; font-size: 12px; color: #888; }
                     </style>
                 </head>
@@ -146,8 +146,8 @@ async function sendAdminNotification(booking) {
 
     try {
         const { data, error } = await resend.emails.send({
-            from: process.env.EMAIL_FROM || 'Bakari-Health <bakari.health@icloud.com>',
-            to: [process.env.ADMIN_EMAIL || 'bakari'],
+            from: process.env.EMAIL_FROM || 'Bakari-Health <noreply@bakari-health.co.za>',
+            to: [process.env.ADMIN_EMAIL || 'bakari.health@icloud.com'],
             subject: `📋 New Booking – ${customer.firstName} ${customer.lastName}`,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -166,7 +166,7 @@ async function sendAdminNotification(booking) {
                         <p><strong>Booking ID:</strong> ${booking._id}</p>
                     </div>
 
-                    <a href="https://bakari-health-frontend.onrender.com/admin.html" style="background: #1a1a2e; color: #fff; padding: 10px 20px; border-radius: 4px; text-decoration: none;">
+                    <a href="https://www.bakari-health.co.za/admin.html" style="background: #1a1a2e; color: #fff; padding: 10px 20px; border-radius: 4px; text-decoration: none;">
                         View in Dashboard
                     </a>
                 </div>

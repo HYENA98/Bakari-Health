@@ -131,7 +131,7 @@ ul {
 }
 
 /* ========================================
-   LOGO STYLES - WITH DIVIDER LINE (UPDATED)
+   LOGO STYLES - WITH DIVIDER LINE
    ======================================== */
 
 .logo a {
@@ -141,13 +141,13 @@ ul {
 }
 
 .logo-img {
-    height: 90px;  /* INCREASED from 70px */
+    height: 90px;
     width: auto;
 }
 
 .logo-divider {
     width: 2px;
-    height: 65px;  /* INCREASED from 55px */
+    height: 65px;
     background: linear-gradient(to bottom, transparent, #b8860b, transparent);
     opacity: 0.6;
     flex-shrink: 0;
@@ -161,7 +161,7 @@ ul {
 
 .logo-text {
     font-family: var(--font-serif);
-    font-size: 22px;  /* DECREASED from 28px */
+    font-size: 22px;
     font-weight: 700;
     letter-spacing: 1px;
     color: var(--primary-navy);
@@ -235,171 +235,7 @@ ul {
 }
 
 /* ==========================================
-   HEADER / NAVBAR - FIXED FOR TABLETS (UPDATED)
-   ========================================== */
-
-/* Large Tablets / Nest Hub (around 1024px - 1100px) */
-@media (max-width: 1100px) {
-    .navbar {
-        height: auto;
-        padding: 12px 0;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .logo a {
-        gap: 10px;
-    }
-
-    .logo-img {
-        height: 60px;  /* INCREASED from 50px */
-    }
-
-    .logo-divider {
-        height: 45px;  /* INCREASED from 35px */
-    }
-
-    .logo-text {
-        font-size: 18px;  /* DECREASED from 20px */
-    }
-
-    .logo-tagline {
-        font-size: 8px;
-    }
-
-    .nav-links {
-        gap: 16px;
-        flex-wrap: wrap;
-    }
-
-    .nav-links a {
-        font-size: 11px;
-        letter-spacing: 0.5px;
-    }
-
-    .nav-cta {
-        padding: 8px 16px;
-        font-size: 11px;
-    }
-}
-
-/* Tablets (768px - 1024px) */
-@media (max-width: 992px) {
-    .navbar {
-        height: auto;
-        padding: 12px 0;
-    }
-
-    .logo-img {
-        height: 55px;  /* INCREASED from 45px */
-    }
-
-    .logo-divider {
-        height: 40px;  /* INCREASED from 32px */
-    }
-
-    .logo-text {
-        font-size: 16px;  /* DECREASED from 18px */
-    }
-
-    .logo-tagline {
-        font-size: 7px;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .nav-cta {
-        display: none;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--white);
-        padding: 20px 24px;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        border-top: 1px solid var(--border-color);
-        gap: 12px;
-        z-index: 1000;
-    }
-
-    .nav-links.active a {
-        font-size: 14px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        color: var(--primary-navy);
-        padding: 8px 0;
-        border-bottom: 1px solid var(--light-bg);
-        width: 100%;
-        display: block;
-        text-transform: uppercase;
-    }
-
-    .nav-links.active a:hover {
-        color: var(--primary-blue);
-    }
-}
-
-/* Small Tablets (600px - 768px) */
-@media (max-width: 768px) {
-    .logo-img {
-        height: 50px;  /* INCREASED from 40px */
-    }
-
-    .logo-divider {
-        height: 35px;  /* INCREASED from 28px */
-    }
-
-    .logo-text {
-        font-size: 14px;  /* DECREASED from 16px */
-    }
-
-    .logo-tagline {
-        font-size: 6.5px;
-    }
-
-    .navbar {
-        height: auto;
-        padding: 10px 0;
-    }
-}
-
-/* Mobile (480px and below) */
-@media (max-width: 480px) {
-    .logo-img {
-        height: 42px;  /* INCREASED from 35px */
-    }
-
-    .logo-divider {
-        height: 28px;  /* INCREASED from 24px */
-    }
-
-    .logo-text {
-        font-size: 13px;  /* DECREASED from 14px */
-    }
-
-    .logo-tagline {
-        font-size: 6px;
-    }
-
-    .navbar {
-        height: auto;
-        padding: 8px 0;
-    }
-}
-
-/* ==========================================
-   HERO SECTION - FIXED FOR MOBILE
+   HERO SECTION
    ========================================== */
 .hero {
     position: relative;
@@ -1055,7 +891,7 @@ ul {
 }
 
 /* ========================================
-   DRIP GRID LAYOUT - 2 PER ROW (FIXED)
+   DRIP GRID LAYOUT - 2 PER ROW
    ======================================== */
 .drips-hero {
     padding: 140px 0 40px;
@@ -1179,9 +1015,6 @@ ul {
     gap: 8px;
 }
 
-/* ========================================
-   FIXED: DRIP PRICE - NOW VISIBLE
-   ======================================== */
 .drip-price {
     font-size: 1.2rem;
     font-weight: 700;
@@ -1287,7 +1120,6 @@ ul {
     margin-left: 16px;
 }
 
-/* Packages Column */
 .packages-column {
     background: var(--white);
     padding: 40px;
@@ -1617,7 +1449,7 @@ ul {
 }
 
 /* ========================================
-   ABOUT PAGE STYLES (UPDATED WITH NAVY BLUE AND IMAGE BG)
+   ABOUT PAGE STYLES
    ======================================== */
 .about-hero {
     padding: 140px 0 60px;
@@ -1627,7 +1459,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(11, 37, 69, 0.85) 0%, rgba(19, 64, 116, 0.85) 100%), url('../images/aboutHero.png ') no-repeat center center/cover;
+    background: linear-gradient(135deg, rgba(11, 37, 69, 0.85) 0%, rgba(19, 64, 116, 0.85) 100%), url('../images/aboutHero.png') no-repeat center center/cover;
     background-size: cover;
     background-blend-mode: overlay;
 }
@@ -1693,7 +1525,7 @@ ul {
 }
 
 .about-content .highlight-text {
-    color: #0b2545; 
+    color: #0b2545;
     font-weight: 600;
 }
 
@@ -1764,7 +1596,7 @@ ul {
 }
 
 /* ========================================
-   OUR TEAM - LEAD PRACTITIONER LAYOUT (UPDATED)
+   OUR TEAM - LEAD PRACTITIONER LAYOUT
    ======================================== */
 .lead-practitioner-wrapper {
     display: flex;
@@ -1796,7 +1628,7 @@ ul {
     flex-shrink: 0;
     width: 280px;
     height: 280px;
-    border-radius: 12px;  /* Soft corners */
+    border-radius: 12px;
     overflow: hidden;
     border: 4px solid #0b2545;
     position: relative;
@@ -1814,10 +1646,10 @@ ul {
     display: block;
 }
 
-/* Fallback icon when image loads with error */
 .lead-image-box.image-fallback .lead-avatar-fallback {
     display: flex !important;
 }
+
 .lead-image-box .lead-avatar-fallback {
     display: none;
     font-size: 5rem;
@@ -1852,7 +1684,7 @@ ul {
 }
 
 /* ========================================
-   CTA About Section - Updated to match style
+   CTA About Section
    ======================================== */
 .cta-about {
     background: #0b2545;
@@ -2040,7 +1872,6 @@ ul {
     color: #1a1a2e;
 }
 
-/* FAQ CTA */
 .faq-cta {
     background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
     color: #fff;
@@ -2273,7 +2104,6 @@ ul {
 /* ========================================
    CONTACT PAGE STYLES
    ======================================== */
-
 .contact-hero {
     padding: 140px 0 60px;
     text-align: center;
@@ -2306,7 +2136,6 @@ ul {
     margin: 0 auto;
 }
 
-/* Contact Section */
 .contact-section {
     padding: 80px 0;
     background: #ffffff;
@@ -2319,7 +2148,6 @@ ul {
     align-items: start;
 }
 
-/* Left Column - Contact Info */
 .contact-info-column h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.4rem;
@@ -2386,7 +2214,6 @@ ul {
     color: #b8860b;
 }
 
-/* Contact Social */
 .contact-social h4 {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
@@ -2419,7 +2246,6 @@ ul {
     box-shadow: 0 8px 25px rgba(184, 134, 11, 0.3);
 }
 
-/* Right Column - Contact Form */
 .contact-form-column {
     background: #faf8f6;
     padding: 40px;
@@ -2512,7 +2338,6 @@ ul {
     transform: none;
 }
 
-/* Form Success Message */
 .form-success {
     display: none;
     text-align: center;
@@ -2542,7 +2367,6 @@ ul {
     font-size: 0.95rem;
 }
 
-/* Map Section */
 .map-section {
     padding: 0 0 60px 0;
     background: #ffffff;
@@ -2556,7 +2380,6 @@ ul {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
-/* Contact CTA */
 .contact-cta {
     background: linear-gradient(135deg, #1a1a2e 0%, #2d2d4a 100%);
     color: #fff;
@@ -2598,6 +2421,51 @@ ul {
 /* ========================================
    RESPONSIVE STYLES
    ======================================== */
+
+/* Large Tablets / Nest Hub (around 1024px - 1100px) */
+@media (max-width: 1100px) {
+    .navbar {
+        height: auto;
+        padding: 12px 0;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .logo a {
+        gap: 10px;
+    }
+
+    .logo-img {
+        height: 60px;
+    }
+
+    .logo-divider {
+        height: 45px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .logo-tagline {
+        font-size: 8px;
+    }
+
+    .nav-links {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+        letter-spacing: 0.5px;
+    }
+
+    .nav-cta {
+        padding: 8px 16px;
+        font-size: 11px;
+    }
+}
 
 /* Tablets & Small Laptops */
 @media (max-width: 1024px) {
@@ -2665,6 +2533,70 @@ ul {
 }
 
 @media (max-width: 992px) {
+.navbar {
+        height: auto;
+        padding: 12px 0;
+    }
+
+    .logo-img {
+        height: 55px;
+    }
+
+    .logo-divider {
+        height: 40px;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+
+    .logo-tagline {
+        font-size: 7px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 20px 24px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid var(--border-color);
+        gap: 12px;
+        z-index: 1000;
+    }
+
+    .nav-links.active a {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        color: var(--primary-navy);
+        padding: 8px 0;
+        border-bottom: 1px solid var(--light-bg);
+        width: 100%;
+        display: block;
+        text-transform: uppercase;
+    }
+
+    .nav-links.active a:hover {
+        color: var(--primary-blue);
+    }
+
     .hero {
         min-height: auto;
         padding-top: 100px;
@@ -2743,6 +2675,27 @@ ul {
 
 /* Mobile */
 @media (max-width: 768px) {
+    .logo-img {
+        height: 50px;
+    }
+
+    .logo-divider {
+        height: 35px;
+    }
+
+    .logo-text {
+        font-size: 14px;
+    }
+
+    .logo-tagline {
+        font-size: 6.5px;
+    }
+
+    .navbar {
+        height: auto;
+        padding: 10px 0;
+    }
+
     .nav-links,
     .nav-cta {
         display: none;
@@ -2752,7 +2705,6 @@ ul {
         display: flex;
     }
 
-    /* ====== WHY CHOOSE US - FULL WIDTH ON MOBILE ====== */
     .why-container {
         grid-template-columns: 1fr;
         gap: 0;
@@ -2896,7 +2848,6 @@ ul {
         text-align: center;
     }
 
-    /* Logo Mobile */
     .logo-img {
         height: 50px;
     }
@@ -3103,34 +3054,30 @@ ul {
         font-size: 1rem;
     }
 
-    /* ========================================
-       LEAD PRACTITIONER - RESPONSIVE TWEAKS
-       ======================================== */
     .lead-practitioner-card {
         padding: 30px 20px;
         gap: 20px;
         margin: 0 10px;
         max-width: 100%;
     }
-    
+
     .lead-image-box {
         width: 200px;
         height: 200px;
     }
-    
+
     .lead-image-box .lead-avatar-fallback {
         font-size: 3.5rem;
     }
-    
+
     .lead-info-box h4 {
         font-size: 1.4rem;
     }
-    
+
     .lead-info-box p {
         font-size: 0.95rem;
     }
 
-    /* Contact Page Mobile */
     .contact-hero {
         padding: 120px 0 40px;
         min-height: 220px;
@@ -3189,6 +3136,11 @@ ul {
 
 /* Small Mobile */
 @media (max-width: 480px) {
+      .navbar {
+        height: auto;
+        padding: 8px 0;
+    }
+
     .hero {
         padding-top: 75px;
         padding-bottom: 0;
@@ -3464,7 +3416,6 @@ ul {
         font-size: 1.6rem;
     }
 
-    /* Logo small mobile */
     .logo-img {
         height: 42px;
     }
@@ -3481,26 +3432,24 @@ ul {
         font-size: 7px;
     }
 
-    /* Lead Practitioner Small Mobile */
     .lead-image-box {
         width: 160px;
         height: 160px;
         border-width: 3px;
     }
-    
+
     .lead-image-box .lead-avatar-fallback {
         font-size: 2.8rem;
     }
-    
+
     .lead-info-box h4 {
         font-size: 1.2rem;
     }
-    
+
     .lead-practitioner-card {
         padding: 24px 16px;
     }
 
-    /* Contact Page Small Mobile */
     .contact-hero h1 {
         font-size: 1.8rem;
     }
@@ -3617,7 +3566,6 @@ ul {
         font-size: 7px;
     }
 
-    /* Logo 360px */
     .logo-img {
         height: 38px;
     }
@@ -3642,12 +3590,11 @@ ul {
         padding: 8px 16px;
     }
 
-    /* Lead Practitioner 360px */
     .lead-image-box {
         width: 140px;
         height: 140px;
     }
-    
+
     .lead-image-box .lead-avatar-fallback {
         font-size: 2.5rem;
     }
