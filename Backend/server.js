@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 const Booking = require('./models/Booking');
 const { sendBookingConfirmation, sendAdminNotification } = require('./utils/email');
 const { generateShortReference } = require('./utils/reference');
@@ -12,18 +13,51 @@ dns.setDefaultResultOrder('ipv4first');
 const app = express();
 
 // ========================================
+// RATE LIMITING (Security)
+// ========================================
+
+// Global rate limiter - prevents DoS attacks
+const globalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per windowMs
+    message: {
+        success: false,
+        message: 'Too many requests from this IP, please try again later.'
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+// Stricter limiter for booking endpoints
+const bookingLimiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 10, // Limit each IP to 10 booking requests per minute
+    message: {
+        success: false,
+        message: 'Too many booking attempts. Please wait a moment before trying again.'
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+// Apply global rate limiter to all routes
+app.use(globalLimiter);
+
+// ========================================
 // MIDDLEWARE
 // ========================================
 
 app.use(cors({
-    origin: ['http://localhost:3001',
-             'http://127.0.0.1:3001',
-             'https://bakari-health.onrender.com',
-             'https://www.bakari-health.co.za',
-             'https://bakari-health.co.za'
-            ],
+    origin: [
+        'http://localhost:3001',
+        'http://127.0.0.1:3001',
+        'https://bakari-health.onrender.com',
+        'https://www.bakari-health.co.za',
+        'https://bakari-health.co.za'
+    ],
     credentials: true,
 }));
+
 app.use(express.json());
 
 // ========================================
@@ -41,6 +75,56 @@ mongoose.connect(process.env.MONGODB_URI)
     });
 
 // ========================================
+// HELPER: Input Validation
+// ========================================
+
+const validateBookingInput = (data) => {
+    const { customer, service, appointment } = data;
+
+    // Validate required fields
+    if (!customer || !service || !appointment) {
+        return { valid: false, message: 'Missing required fields' };
+    }
+
+    // Validate email
+    const emailRegex = /^\S+@\S+\.\S+$/;
+    if (!customer.email || !emailRegex.test(customer.email)) {
+        return { valid: false, message: 'Invalid email address' };
+    }
+
+    // Validate phone (South African number format)
+    const phoneRegex = /^(\+27|0)[6-8][0-9]{8}$/;
+    if (!customer.phone || !phoneRegex.test(customer.phone.replace(/\s/g, ''))) {
+        return { valid: false, message: 'Invalid phone number. Please use a valid South African number.' };
+    }
+
+    // Validate service price
+    if (!service.price || service.price <= 0) {
+        return { valid: false, message: 'Invalid service price' };
+    }
+
+    // Validate appointment date
+    if (!appointment.date || new Date(appointment.date) < new Date()) {
+        return { valid: false, message: 'Invalid appointment date' };
+    }
+
+    // Sanitize inputs (prevent XSS)
+    const sanitize = (str) => {
+        if (typeof str !== 'string') return str;
+        return str.replace(/[<>]/g, '').trim();
+    };
+
+    customer.firstName = sanitize(customer.firstName);
+    customer.lastName = sanitize(customer.lastName);
+    customer.address = sanitize(customer.address);
+    if (data.specialRequests) {
+        data.specialRequests = sanitize(data.specialRequests);
+    }
+
+    return { valid: true, data };
+};
+
+// ========================================
 // ROUTES
 // ========================================
 
@@ -56,15 +140,28 @@ app.get('/health', (req, res) => {
 });
 
 // ========================================
-// BOOKING ROUTES
+// BOOKING ROUTES (with rate limiting)
 // ========================================
 
 // Create a booking
-app.post('/api/bookings', async (req, res) => {
+app.post('/api/bookings', bookingLimiter, async (req, res) => {
     try {
         console.log('📨 Received booking data:', req.body);
 
-        const bookingData = req.body;
+        // ========================================
+        // VALIDATE INPUT
+        // ========================================
+
+        const validation = validateBookingInput(req.body);
+        if (!validation.valid) {
+            return res.status(400).json({
+                success: false,
+                message: validation.message,
+                error: 'Validation failed'
+            });
+        }
+
+        const bookingData = validation.data;
 
         // Generate short reference
         bookingData.reference = generateShortReference();
@@ -117,10 +214,10 @@ app.post('/api/bookings', async (req, res) => {
             }
         }
 
+        // Send appropriate error response (don't expose internal errors)
         res.status(400).json({
             success: false,
-            message: 'Error creating booking',
-            error: error.message,
+            message: error.message || 'Error creating booking',
         });
     }
 });
@@ -142,7 +239,6 @@ app.get('/api/bookings', async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error fetching bookings',
-            error: error.message,
         });
     }
 });
@@ -168,7 +264,6 @@ app.get('/api/bookings/:id', async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error fetching booking',
-            error: error.message,
         });
     }
 });
@@ -194,7 +289,6 @@ app.get('/api/bookings/reference/:ref', async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error fetching booking',
-            error: error.message,
         });
     }
 });
@@ -234,7 +328,6 @@ app.put('/api/bookings/:id/status', async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error updating booking',
-            error: error.message,
         });
     }
 });
@@ -260,9 +353,24 @@ app.delete('/api/bookings/:id', async (req, res) => {
         res.status(500).json({
             success: false,
             message: 'Error deleting booking',
-            error: error.message,
         });
     }
+});
+
+// ========================================
+// ERROR HANDLING (Prevents stack trace leaks)
+// ========================================
+
+app.use((err, req, res, next) => {
+    console.error('❌ Unhandled error:', err);
+
+    // Don't expose stack traces in production
+    const isProduction = process.env.NODE_ENV === 'production';
+    res.status(500).json({
+        success: false,
+        message: 'Something went wrong',
+        ...(isProduction ? {} : { error: err.message, stack: err.stack })
+    });
 });
 
 // ========================================
@@ -276,4 +384,5 @@ app.listen(PORT, () => {
     console.log(`📡 Health check: http://localhost:${PORT}/health`);
     console.log(`📡 Bookings API: http://localhost:${PORT}/api/bookings`);
     console.log(`🔧 Mode: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🔒 Rate limiting enabled: 100 requests/15min, 10 bookings/min`);
 });
