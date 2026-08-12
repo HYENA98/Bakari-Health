@@ -514,11 +514,137 @@
                 align-items: stretch;
             }
         }
+
+        /* ========================================
+           PASSWORD PROTECTION STYLES
+           ======================================== */
+
+        #passwordModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(11, 37, 69, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(8px);
+            transition: all 0.4s ease;
+        }
+
+        #passwordModal.hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        .password-box {
+            background: #fff;
+            padding: 48px 40px;
+            border-radius: 16px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .password-box .lock-icon {
+            font-size: 3.5rem;
+            color: #b8860b;
+            margin-bottom: 12px;
+        }
+
+        .password-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .password-box p {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e8e8e8;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: #faf8f6;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+        }
+
+        .password-box input:focus {
+            outline: none;
+            border-color: #b8860b;
+            box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.1);
+            background: #fff;
+        }
+
+        .password-box .btn-unlock {
+            width: 100%;
+            padding: 14px;
+            background: #1a1a2e;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .password-box .btn-unlock:hover {
+            background: #b8860b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(184, 134, 11, 0.3);
+        }
+
+        .password-box .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .password-box .error-message.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- ========================================
+    PASSWORD PROTECTION MODAL
+    ======================================== -->
+
+    <div id="passwordModal">
+        <div class="password-box">
+            <div class="lock-icon"><i class="fas fa-lock"></i></div>
+            <h2>🔒 Admin Access</h2>
+            <p>Enter the admin password to continue.</p>
+            <input type="password" id="adminPasswordInput" placeholder="Enter password..." />
+            <button class="btn-unlock" onclick="verifyPassword()">
+                <i class="fas fa-unlock"></i> Access Dashboard
+            </button>
+            <p class="error-message" id="passwordError">❌ Incorrect password. Please try again.</p>
+        </div>
+    </div>
+
+    <!-- ========================================
+    DASHBOARD
+    ======================================== -->
+
+    <div class="container" id="dashboardContent" style="display: none;">
 
         <!-- ========================================
         HEADER
@@ -634,6 +760,46 @@
     ======================================== -->
 
     <script>
+        // ========================================
+        // PASSWORD PROTECTION
+        // ========================================
+
+        const ADMIN_PASSWORD = 'Bakari2026';
+
+        function verifyPassword() {
+            const input = document.getElementById('adminPasswordInput');
+            const error = document.getElementById('passwordError');
+            const password = input.value;
+
+            if (password === ADMIN_PASSWORD) {
+                // Hide password modal
+                document.getElementById('passwordModal').classList.add('hidden');
+                // Show dashboard
+                document.getElementById('dashboardContent').style.display = 'block';
+                // Load bookings
+                loadBookings();
+            } else {
+                error.classList.add('show');
+                input.value = '';
+                input.focus();
+                input.style.borderColor = '#e74c3c';
+                setTimeout(() => {
+                    input.style.borderColor = '#e8e8e8';
+                }, 3000);
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('adminPasswordInput').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                verifyPassword();
+            }
+        });
+
+        // ========================================
+        // API & VARIABLES
+        // ========================================
+
         const API_URL = 'https://bakari-health-backend.onrender.com';
         let allBookings = [];
 
@@ -715,12 +881,10 @@
 
             let filtered = allBookings;
 
-            // Status filter
             if (statusFilter !== 'all') {
                 filtered = filtered.filter(b => b.appointment.status === statusFilter);
             }
 
-            // Search filter
             if (searchTerm) {
                 filtered = filtered.filter(b =>
                     (b.customer.firstName + ' ' + b.customer.lastName).toLowerCase().includes(searchTerm) ||
@@ -937,27 +1101,19 @@
             document.getElementById('modalOverlay').classList.remove('show');
         }
 
-        // Close modal on overlay click
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
 
-        // Close modal on Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeModal();
         });
 
         // ========================================
-        // AUTO-REFRESH (Every 60 seconds)
+        // AUTO-REFRESH (Every 120 seconds)
         // ========================================
 
-        setInterval(loadBookings, 60000);
-
-        // ========================================
-        // LOAD ON PAGE START
-        // ========================================
-
-        loadBookings();
+        setInterval(loadBookings, 120000);
     </script>
 
 </body>
