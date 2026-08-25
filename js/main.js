@@ -1,6 +1,8 @@
-// ========================================
-// BAKARI HEALTH - MAIN JS
-// ========================================
+/* ===============================
+   BAKARI HEALTH - MAIN STYLES 
+   Author: Neo Monyebodi
+   Email: neo1monyebodi@gmail.com
+   ==============================*/
 const API_URL = 'https://bakari-health-backend.onrender.com';
 // ---------- HAMBURGER MENU ----------//
 const hamburger = document.getElementById('hamburger');
@@ -19,7 +21,6 @@ if (hamburger && navLinks) {
         });
     });
 }
-
 // ---------- NAVBAR SCROLL EFFECT ----------//
 const header = document.querySelector('.header');
 
