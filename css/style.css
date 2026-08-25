@@ -2049,7 +2049,7 @@ ul {
 
 .hiw-feature-item .feature-icon {
     font-size: 2.4rem;
-    color: #b8860b;
+    color: #ffff;
     margin-bottom: 12px;
 }
 
@@ -2079,7 +2079,7 @@ ul {
 }
 
 .hiw-cta h2 span {
-    color: #b8860b;
+    color: white;
 }
 
 .hiw-cta p {
