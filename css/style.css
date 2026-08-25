@@ -727,7 +727,7 @@ ul {
 .feature-icon {
     width: 45px;
     height: 45px;
-    background-color: var(--accent-bg-tint);
+    background-color: var(--primary-navy);
     color: var(--primary-blue);
     border-radius: 50%;
     display: flex;
@@ -1897,8 +1897,8 @@ ul {
 }
 
 .faq-cta .btn-primary {
-    background: #b8860b;
-    border-color: #b8860b;
+    background:#1a1a2e;
+    border-color: #1a1a2e;
 }
 
 .faq-cta .btn-primary:hover {
@@ -2090,8 +2090,8 @@ ul {
 }
 
 .hiw-cta .btn-primary {
-    background: #b8860b;
-    border-color: #b8860b;
+    background: #1a1a2e;
+    border-color: #1a1a2e;
 }
 
 .hiw-cta .btn-primary:hover {
