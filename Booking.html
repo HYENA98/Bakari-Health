@@ -83,9 +83,13 @@
                     <p class="subtitle">Complete the form below and we'll confirm your appointment within 24 hours.</p>
 
                     <!-- Selected Service Display -->
-                    <div class="selected-service">
+                
+                    <div class="selected-service" id="selectedServiceBox">
                         <div>
-                            <div class="service-label">Selected Drip</div>
+                            <div class="service-label">
+                                <i class="fas fa-check-circle" ></i>
+                                Your Selected Drip
+                            </div>
                             <div class="service-name-display" id="selectedServiceName">None Selected</div>
                         </div>
                         <div class="service-price-display" id="selectedServicePrice">R0</div>
@@ -122,7 +126,7 @@
                                     <option value="brain-boost">BRAIN BOOST – R1,150</option>
                                     <option value="athletic-recovery">ATHLETIC RECOVERY – R1,200</option>
                                     <option value="energy-booster">ENERGY BOOSTER – R1,050</option>
-                                    <option value="beauty-glow">BEAUTY GLOW – R1,450</option>
+                                    <option value="beauty-boost">BEAUTY BOOST – R1,450</option>
                                     <option value="skin-glow">SKIN GLOW – R1,250</option>
                                     <option value="immune-booster">IMMUNE BOOSTER – R1,050</option>
                                     <option value="ultimate-immunity">ULTIMATE IMMUNITY – R1,050</option>
@@ -184,11 +188,11 @@
                         </div>
 
                         <!-- Terms -->
-                        <div style="margin-bottom: 20px; font-size:0.85rem; color:#888;">
+                        <div style="margin-bottom: 20px; font-size:0.85rem; color:#575353;">
                             <input type="checkbox" id="termsCheckbox" required style="margin-right:8px;" />
                             <label for="termsCheckbox" style="display:inline;">
-                                I agree to the <a href="#" style="color:#b8860b;">Terms of Service</a> and 
-                                <a href="#" style="color:#b8860b;">Privacy Policy</a>. I understand the deposit is non-refundable.
+                                I agree to the <a href="terms-of-service.html" style="color:#070431;">Terms of Service</a> and 
+                                <a href="privacy-policy.html" style="color:#070431;">Privacy Policy</a>. I understand the deposit is non-refundable.
                             </label>
                         </div>
 

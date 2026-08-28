@@ -1319,6 +1319,7 @@ ul {
 .selected-service .service-label {
     font-size: 0.85rem;
     color: #888;
+    margin-right: 6px;
 }
 
 .selected-service .service-name-display {
@@ -1329,8 +1330,15 @@ ul {
 
 .selected-service .service-price-display {
     font-weight: 700;
-    color: #b8860b;
+    color: #080333;
     font-size: 1.2rem;
+}
+
+.selected-service.active {
+    background: rgba(184, 134, 11, 0.08);
+    border-color: #080333;
+    box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+    transition: all 0.3s ease;
 }
 
 .deposit-section {
@@ -1350,12 +1358,12 @@ ul {
 .deposit-section .deposit-amount {
     font-size: 2rem;
     font-weight: 700;
-    color: #b8860b;
+    color: #080333;
 }
 
 .deposit-section .deposit-note {
     font-size: 0.85rem;
-    color: #888;
+    color: #3d3939;
     margin-top: 4px;
 }
 

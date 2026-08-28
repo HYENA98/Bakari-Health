@@ -1,5 +1,3 @@
-// utils/reference.js
-
 /**
  * Generate a short, unique reference number
  * Format: BK + 6 alphanumeric characters

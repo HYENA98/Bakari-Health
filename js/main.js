@@ -1,5 +1,5 @@
 /* ===============================
-   BAKARI HEALTH - MAIN STYLES 
+   BAKARI HEALTH - MAIN Javascript 
    Author: Neo Monyebodi
    Email: neo1monyebodi@gmail.com
    ==============================*/
@@ -52,16 +52,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// =========================================//
-// AUTO-FILL SERVICE FROM URL PARAMETER     //
-// =========================================//
+// =========================================
+// AUTO-FILL SERVICE FROM URL PARAMETER     
+// =========================================
+
 const urlParams = new URLSearchParams(window.location.search);
 const serviceParam = urlParams.get('service');
+const serviceSelect = document.getElementById('serviceSelect');
 
 const serviceMap = {
     'immunity': 'immune-booster',
     'energy': 'energy-booster',
-    'beauty': 'beauty-glow',
+    'beauty': 'beauty-boost',
     'hangover': 'hangover-recovery',
     'stress': 'brain-boost',
     'sports': 'athletic-recovery',
@@ -70,23 +72,36 @@ const serviceMap = {
     'skin': 'skin-glow',
     'hydration': 'rehydration',
     'custom': 'rejuvenating',
-    'sunset-recovery': 'sunset-recovery'
 };
 
-if (serviceParam && serviceMap[serviceParam]) {
-    const serviceSelect = document.getElementById('serviceSelect');
-    const mappedValue = serviceMap[serviceParam];
+if (serviceParam && serviceSelect) {
+    let matchedValue = null;
+
     for (let option of serviceSelect.options) {
-        if (option.value === mappedValue) {
-            option.selected = true;
+        if (option.value === serviceParam) {
+            matchedValue = serviceParam;
             break;
         }
     }
-    updateServiceDisplay();
+
+    if (!matchedValue && serviceMap[serviceParam]) {
+        matchedValue = serviceMap[serviceParam];
+    }
+
+    if (matchedValue) {
+        for (let option of serviceSelect.options) {
+            if (option.value === matchedValue) {
+                option.selected = true;
+                break;
+            }
+        }
+
+        updateServiceDisplay();
+    }
 }
 
 // ========================================
-// UPDATE SERVICE DISPLAY
+// SERVICE DISPLAY
 // ========================================
 
 const servicePrices = {
@@ -95,13 +110,14 @@ const servicePrices = {
     'brain-boost': { name: 'BRAIN BOOST', price: 1150 },
     'athletic-recovery': { name: 'ATHLETIC RECOVERY', price: 1200 },
     'energy-booster': { name: 'ENERGY BOOSTER', price: 1050 },
-    'beauty-glow': { name: 'BEAUTY GLOW', price: 1450 },
+    'beauty-boost': { name: 'BEAUTY BOOST', price: 1450 },
     'flu-gone': { name: 'FLU GONE', price: 950 },
     'rejuvenating': { name: 'REJUVENATING', price: 1050 },
     'skin-glow': { name: 'SKIN GLOW', price: 1250 },
     'immune-booster': { name: 'IMMUNE BOOSTER', price: 1050 },
     'rehydration': { name: 'REHYDRATION', price: 700 },
-    'signature': { name: 'SIGNATURE DRIP', price: 1650 }
+    'signature': { name: 'SIGNATURE DRIP', price: 1650 },
+    'ultimate-immunity': { name: 'ULTIMATE IMMUNITY', price: 1050 }
 };
 
 function updateServiceDisplay() {
@@ -117,10 +133,18 @@ function updateServiceDisplay() {
         priceDisplay.textContent = `R${service.price.toLocaleString()}`;
         const deposit = Math.round(service.price * 0.5);
         depositDisplay.textContent = `R${deposit.toLocaleString()}`;
+        
+        // Optional: Add a visual highlight when a drip is selected
+        const box = document.getElementById('selectedServiceBox');
+        if (box) box.classList.add('active');
+        
     } else {
         nameDisplay.textContent = 'None Selected';
         priceDisplay.textContent = 'R0';
         depositDisplay.textContent = 'R0';
+        
+        const box = document.getElementById('selectedServiceBox');
+        if (box) box.classList.remove('active');
     }
 }
 
