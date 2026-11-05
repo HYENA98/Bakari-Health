@@ -1,0 +1,28 @@
+# 1. Frontend Languages (React, HTML, CSS)
+
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+*.jsx linguist-language=JavaScript
+*.tsx linguist-language=TypeScript
+
+# 2. Backend & Database Languages (Node, Express, Mongo)
+
+# Standard JavaScript files (used in React, Node, Express, and Mongoose schemas)
+*.js linguist-language=JavaScript
+*.mjs linguist-language=JavaScript
+*.cjs linguist-language=JavaScript
+*.ts linguist-language=TypeScript
+
+# 3. Configuration & Docs
+
+*.json linguist-language=JSON
+*.md linguist-language=Markdown
+
+# 4. CRUCIAL: Exclude dependencies and build files
+
+# This prevents package-lock.json from taking over 90% of your language bar
+package-lock.json linguist-vendored
+yarn.lock linguist-vendored
+node_modules/** linguist-vendored
+dist/** linguist-vendored
+build/** linguist-vendored
