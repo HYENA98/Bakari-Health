@@ -1,7 +1,7 @@
 # Bakari-Health | Luxury Mobile IV Therapy 🩺💧
 
 > **OPTIMISTIC ABOUT HEALTH. OPTIMISTIC ABOUT YOU.**
-
+MERN stack Project
 **Bakari-Health** is a premium, full-stack web application (MERN) designed for a luxury mobile IV drip service. The platform allows users to explore tailored IV therapies, understand their health benefits, and seamlessly book a nurse-administered session delivered directly to their location.
 
 ## 🚀 Live Demo
